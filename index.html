@@ -12,11 +12,52 @@
   </head>
   <body>
    
-    <img src="images/bbl.jpg" class="img-fluid" alt="img">
-
-
-    <h1>This site under construction</h1>
+    <div class="container">
+      <h2>THIS SITE UNDER CONSTRUCTION</h2>
+      <span style="color:#ffffff">www.shahashok.com.np</span> 
+      <h1 id="timeToStart">Time To Start Website</h1>
+      <ul id="timeControl">
+          <li><span id="days"></span>Day</li>
+          <li><span id="hours"></span>Hours</li>
+          <li><span id="minutes"></span>Minutes</li>
+          <li><span id="seconds"></span>Seconds</li>
+      </ul>
+  </div>
      
+
+  <script>
+    
+let timeToStart = document.querySelector('#timeToStart')
+let timeControl = document.querySelector('#timeControl')
+let second = 1000
+let minute = second * 60
+let hour = minute * 60
+let day = hour * 24
+
+// اون تاریخی که قراره بهش برسیم
+let countDown = new Date('July 10, 2024 00:00:00').getTime();
+
+const myRacing = () => {
+
+    let nowDate = new Date().getTime(),
+        distance = countDown - nowDate;
+    //
+    document.getElementById('days').innerText = Math.floor(distance / (day)),
+        document.getElementById('hours').innerText = Math.floor((distance % (day)) / (hour)),
+        document.getElementById('minutes').innerText = Math.floor((distance % (hour)) / (minute)),
+        document.getElementById('seconds').innerText = Math.floor((distance % (minute)) / second);
+
+    // وقتی تاریخ و زمان گذشته بود
+    if (distance < 0) {
+        clearInterval(MyTimer);
+        timeToStart.innerHTML = 'The camp began ☻'
+        timeControl.innerHTML = ''
+    }
+
+}
+
+MyTimer = setInterval(myRacing, 1000);
+  </script>
     <!-- Optional JavaScript; choose one of the two! -->
 
     <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
